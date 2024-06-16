@@ -98,59 +98,16 @@ WaveSchedule
 		WaveSpawn
 		{
 			Where spawnbot
-			Name "W1_01_A"
-			TotalCount 45
-			MaxActive 6
-			SpawnCount 3
-			WaitBeforeStarting 2
-			WaitBetweenSpawns 6
-			TotalCurrency 350
-			RandomChoice
-			{
-				TFBot
-				{
-					Template Scout
-					Skill Easy
-				}
-				TFBot
-				{
-					Template Scout_Bat
-				}
-				TFBot
-				{
-					Template Scout_Bat
-				}
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot_left
-			Name "W1_01_B"
-			TotalCount 18
-			MaxActive 2
-			SpawnCount 1
-			WaitBeforeStarting 6
-			WaitBetweenSpawns 4
-			TotalCurrency 200
-			TFBot
-			{
-				Template Demoman_Knight
-			}
-		}
-		WaveSpawn
-		{
-			Where spawnbot
-			Name "W1_01_C"
-			TotalCount 5
+			Name "W1_TEST"
+			TotalCount 10
 			MaxActive 1
 			SpawnCount 1
-			WaitBeforeStarting 17
-			WaitBetweenSpawns 15
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
 			TotalCurrency 50
 			TFBot
 			{
-				Template Giant_Scout_Sandman_Armored
-				Skill Easy
+				Template Heavy_Gnome
 			}
 		}
 	}

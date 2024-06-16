@@ -8,7 +8,7 @@
 //Giant_Scout
 //Giant_Scout_FaN
 //Giant_Scout_Bonk
-//Giant_Scout_Bat
+//Giant_Scout_Charged
 //Giant_Scout_Sandman
 //Giant_Scout_Sandman_Armored
 //Giant_Scout_Sandman_Monarch
@@ -121,9 +121,9 @@ WaveSchedule
 				"override footstep sound set" 5
 			}
 		}
-		Giant_Scout_Bat
+		Giant_Scout_Charged
 		{
-			Name "Giant Sprinter Scout"
+			Name "Giant Charged Scout"
 			Class Scout
 			Health 1200
 			Skill Expert
@@ -183,13 +183,8 @@ WaveSchedule
 			}
 			ItemAttributes
 			{
-				ItemName "Batter's Helmet"
-				"set item tint rgb" 1581885
-			}
-			ItemAttributes
-			{
 				ItemName "MNC Mascot Outfit"
-				"set item tint rgb" 1581885
+				"set item tint rgb" 5801378
 			}
 			CharacterAttributes
 			{

@@ -1,0 +1,1000 @@
+#base orchard_robot_templates.pop
+#base orchard_giant_robot_templates.pop
+
+WaveSchedule
+{
+	StartingCurrency 800
+	RespawnWaveTime 3
+	FixedRespawnWaveTime no
+	CanBotsAttackWhileInSpawnRoom no
+	Advanced 1
+	Mission
+	{
+		Where spawnbot_mission_sentrybuster
+		Objective DestroySentries
+		InitialCooldown 30
+		BeginAtWave 1
+		RunForThisManyWaves 6
+		CooldownTime 30
+		DesiredCount 1
+		TFBot
+		{
+			Template Sentry_Buster
+		}
+	}
+	Mission
+	{
+		Where spawnbot
+		Objective Engineer
+		InitialCooldown 30
+		BeginAtWave 2
+		RunForThisManyWaves 1
+		CooldownTime 60
+		DesiredCount 1
+		TFBot
+		{
+			Template Engineer_TeleIn_Sentry_Teleporter
+			TeleportWhere spawnbot_left
+			TeleportWhere spawnbot_right
+			TeleportWhere spawnbot_invasion
+			TeleportWhere spawnbot_mission_sentrybuster
+		}
+	}
+	Mission
+	{
+		Where spawnbot_mission_sniper
+		Objective Sniper
+		InitialCooldown 25
+		BeginAtWave 3
+		RunForThisManyWaves 1
+		CooldownTime 40
+		DesiredCount 2
+		TFBot
+		{
+			Template Sniper
+		}
+	}
+	Mission
+	{
+		Where spawnbot_mission_sniper
+		Objective Sniper
+		InitialCooldown 30
+		BeginAtWave 4
+		RunForThisManyWaves 1
+		CooldownTime 30
+		DesiredCount 3
+		TFBot
+		{
+			Template Sniper_Sydney
+		}
+	}
+	Mission
+	{
+		Where spawnbot_invasion
+		Objective Engineer
+		InitialCooldown 25
+		BeginAtWave 4
+		RunForThisManyWaves 1
+		CooldownTime 60
+		DesiredCount 3
+		TFBot
+		{
+			Template Engineer_WalkIn_Sentry_Teleporter
+			TeleportWhere spawnbot_left
+			TeleportWhere spawnbot_right
+			TeleportWhere spawnbot_invasion
+			TeleportWhere spawnbot_mission_sentrybuster
+			TeleportWhere spawnbot_mission_sniper
+		}
+	}
+	Mission
+	{
+		Where spawnbot_mission_spy
+		Objective Spy
+		InitialCooldown 40
+		BeginAtWave 5
+		RunForThisManyWaves 1
+		CooldownTime 30
+		DesiredCount 2
+		TFBot
+		{
+			Template Spy
+		}
+	}
+	Mission
+	{
+		Where spawnbot
+		Objective Engineer
+		InitialCooldown 10
+		BeginAtWave 6
+		RunForThisManyWaves 1
+		CooldownTime 60
+		DesiredCount 2
+		TFBot
+		{
+			Template Engineer_TeleIn_Sentry
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w1_01"
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 4
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 6
+			TotalCurrency 125
+			TFBot
+			{
+				Template Scout
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w1_01"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 6
+			WaitBetweenSpawns 8
+			TotalCurrency 125
+			TFBot
+			{
+				Template Pyro
+				Skill Hard
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w1_02"
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 6
+			WaitForAllSpawned "w1_01"
+			WaitBeforeStarting 3
+			WaitBetweenSpawns 8
+			TotalCurrency 125
+			TFBot
+			{
+				Template Scout_Bat
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_right
+			Name "w1_02"
+			TotalCount 20
+			MaxActive 12
+			SpawnCount 4
+			WaitForAllSpawned "w1_01"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 8
+			TotalCurrency 150
+			TFBot
+			{
+				Template Demoman
+				Skill Hard
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w1_03"
+			TotalCount 6
+			MaxActive 6
+			SpawnCount 3
+			WaitForAllSpawned "w1_02"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 35
+			TotalCurrency 150
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Soldier_Barrage
+				}
+				TFBot
+				{
+					Template Soldier_Battalion
+				}
+				TFBot
+				{
+					Template Soldier_Battalion
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w1_03"
+			TotalCount 16
+			MaxActive 8
+			SpawnCount 4
+			WaitForAllDead "w1_02"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 8
+			TotalCurrency 125
+			TFBot
+			{
+				Template Heavy_Shotgun
+			}
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w2_01"
+			TotalCount 36
+			MaxActive 12
+			SpawnCount 4
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 8
+			TotalCurrency 100
+			TFBot
+			{
+				Template Soldier
+				Skill Hard
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w2_01"
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 4
+			WaitBeforeStarting 4
+			WaitBetweenSpawns 7
+			TotalCurrency 100
+			TFBot
+			{
+				Template Heavy_Gnome
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w2_02_a"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 5
+			WaitForAllSpawned "w2_01"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 7
+			TotalCurrency 100
+			TFBot
+			{
+				Template Scout_FaN
+			}
+		}
+		WaveSpawn
+		{
+			Name "w2_tank"
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			WaitForAllDead "w2_01"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 60
+			TotalCurrency 200
+			Tank
+			{
+				Health 15000
+				Speed 75
+				StartingPathTrackNode tank_path_2_1
+				Skin 0
+				OnKilledOutput
+				{
+					Target boss_dead_relay
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_right
+			Name "w2_02_b"
+			TotalCount 2
+			MaxActive 2
+			SpawnCount 1
+			WaitForAllDead "w2_01"
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 30
+			TotalCurrency 200
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Soldier_Concheror
+				}
+				TFBot
+				{
+					Template Giant_Medic_Regen
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w2_03"
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 4
+			WaitForAllSpawned "w2_02_b"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 6
+			TotalCurrency 100
+			TFBot
+			{
+				Template Heavy_Gnome
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w2_support_a"
+			TotalCount 12
+			MaxActive 6
+			SpawnCount 3
+			WaitForAllDead "w2_02_a"
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+			Support 1
+			RandomChoice
+			{
+				TFBot
+				{
+					Template Demoman_Knight
+					Skill Expert
+				}
+				TFBot
+				{
+					Template Demoman_Persian
+					Skill Expert
+				}
+			}
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w3_01_a"
+			TotalCount 15
+			MaxActive 10
+			SpawnCount 5
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 45
+			TotalCurrency 150
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Soldier_Buff
+				}
+				TFBot
+				{
+					Template Heavy
+					Skill Hard
+				}
+				TFBot
+				{
+					Template Heavy
+					Skill Hard
+				}
+				TFBot
+				{
+					Template Heavy
+					Skill Hard
+				}
+				TFBot
+				{
+					Template Heavy
+					Skill Hard
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_right
+			Name "w3_01_b"
+			TotalCount 40
+			MaxActive 16
+			SpawnCount 4
+			WaitBeforeStarting 15
+			WaitBetweenSpawns 8
+			TotalCurrency 150
+			TFBot
+			{
+				Template Scout_Sandman_Monarch
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w3_01_c"
+			TotalCount 3
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 20
+			TotalCurrency 50
+			TFBot
+			{
+				Template Giant_Scout_FaN
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w3_02_a"
+			TotalCount 50
+			MaxActive 15
+			SpawnCount 5
+			WaitForAllDead "w3_01_b"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 10
+			TotalCurrency 200
+			Squad
+			{
+				TFBot
+				{
+					Template Soldier_BlackBox
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Soldier_BlackBox
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Demoman_Burst
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Demoman_Burst
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Demoman_Burst
+					Tag flankers_left
+					Tag flankers_right
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w3_02_b"
+			TotalCount 12
+			MaxActive 8
+			SpawnCount 4
+			WaitForAllDead "w3_01_b"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 35
+			TotalCurrency 150
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Demoman_Barrage
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Medic_Uber_Slow
+				}
+				TFBot
+				{
+					Template Medic_Uber_Slow
+				}
+				TFBot
+				{
+					Template Medic_Uber_Slow
+				}
+			}
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w4_01_a"
+			TotalCount 4
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 20
+			TotalCurrency 100
+			TFBot
+			{
+				Template Giant_Pyro_Rapid
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w4_01_b"
+			TotalCount 36
+			MaxActive 12
+			SpawnCount 6
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 8
+			TotalCurrency 100
+			TFBot
+			{
+				Template Pyro_Scorch
+				Attributes AlwaysCrit
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w4_02_a"
+			TotalCount 4
+			MaxActive 1
+			SpawnCount 1
+			WaitForAllSpawned "w4_01_a"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 20
+			TotalCurrency 100
+			TFBot
+			{
+				Template Giant_Pyro_Rapid
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w4_02_b"
+			TotalCount 12
+			MaxActive 6
+			SpawnCount 3
+			WaitForAllDead "w4_01_b"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template Scout_Shortstop
+				Skill Normal
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_right
+			Name "w4_02_c"
+			TotalCount 24
+			MaxActive 6
+			SpawnCount 3
+			WaitForAllDead "w4_01_b"
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 12
+			TotalCurrency 100
+			TFBot
+			{
+				Template Heavy
+				Skill Hard
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w4_03_a"
+			TotalCount 30
+			MaxActive 10
+			SpawnCount 5
+			WaitForAllSpawned "w4_02_c"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template Soldier
+				Skill Hard
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w4_03_b"
+			TotalCount 20
+			MaxActive 10
+			SpawnCount 5
+			WaitForAllSpawned "w4_02_c"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 30
+			TotalCurrency 100
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Soldier_Blast
+					Skill Expert
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Medic_Uber_Quick
+				}
+				TFBot
+				{
+					Template Medic_Uber_Quick
+				}
+				TFBot
+				{
+					Template Soldier_Buff
+					Skill Hard
+				}
+				TFBot
+				{
+					Template Soldier_Buff
+					Skill Hard
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name "w4_tank_a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitForAllSpawned "w4_02_c"
+			WaitBeforeStarting 20
+			TotalCurrency 100
+			Tank
+			{
+				Health 25000
+				Speed 75
+				StartingPathTrackNode tank_path_1_1
+				Skin 0
+				OnKilledOutput
+				{
+					Target boss_dead_relay
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w5_01_a"
+			TotalCount 50
+			MaxActive 10
+			SpawnCount 10
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 8
+			TotalCurrency 100
+			TFBot
+			{
+				Template Scout_Bonk
+				Attributes AlwaysCrit
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w5_01_b"
+			TotalCount 4
+			MaxActive 4
+			SpawnCount 2
+			WaitBeforeStarting 10
+			WaitBetweenSpawns 30
+			TotalCurrency 200
+			Squad
+			{
+				TFBot
+				{
+					Template Giant_Heavy_Heater
+				}
+				TFBot
+				{
+					Template Giant_Medic
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name "w5_tank_a"
+			TotalCount 2
+			MaxActive 1
+			SpawnCount 1
+			WaitForAllSpawned "w5_01_b"
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 10
+			TotalCurrency 200
+			Tank
+			{
+				Health 30000
+				Speed 75
+				StartingPathTrackNode tank_path_1_1
+				Skin 1
+				OnKilledOutput
+				{
+					Target boss_dead_relay
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_left
+			Name "w5_02_a"
+			TotalCount 24
+			MaxActive 10
+			SpawnCount 5
+			WaitForAllDead "w5_01_a"
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 12
+			TotalCurrency 100
+			TFBot
+			{
+				Template Pyro
+				Skill Hard
+				Attributes AlwaysCrit
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w5_03_b"
+			TotalCount 24
+			MaxActive 8
+			SpawnCount 4
+			WaitForAllDead "w5_01_b"
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 100
+			TFBot
+			{
+				Template Heavy_Deflector
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_right
+			Name "w5_03_c"
+			TotalCount 4
+			MaxActive 2
+			SpawnCount 1
+			WaitForAllDead "w5_01_b"
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 25
+			TotalCurrency 200
+			TFBot
+			{
+				Template Giant_Soldier_Rapid
+				Tag flankers_left
+				Tag flankers_right
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w5_support_a"
+			TotalCount 24
+			MaxActive 12
+			SpawnCount 4
+			WaitBeforeStarting 20
+			WaitBetweenSpawns 25
+			TotalCurrency 100
+			Support 1
+			TFBot
+			{
+				Template Soldier
+			}
+		}
+	}
+	Wave
+	{
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		DoneOutput
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		WaveSpawn
+		{
+			Where spawnbot
+			Name "w6_01_a"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			WaitBeforeStarting 0
+			WaitBetweenSpawns 0
+			TotalCurrency 0
+			TFBot
+			{
+				Template Giant_Heavy_Deflector_Heal
+				Attributes UseBossHealthBar
+				Health 30000
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w6_support_a"
+			TotalCount 32
+			MaxActive 8
+			SpawnCount 4
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 25
+			TotalCurrency 0
+			Support 1
+			Squad
+			{
+				TFBot
+				{
+					Template Soldier_Concheror
+					Skill Expert
+				}
+				TFBot
+				{
+					Template Soldier_Concheror
+					Skill Expert
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w6_support_b"
+			TotalCount 32
+			MaxActive 8
+			SpawnCount 4
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+			Support 1
+			Squad
+			{
+				TFBot
+				{
+					Template Heavy_Gnome
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Heavy_Gnome
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Heavy_Gnome
+					Tag flankers_left
+					Tag flankers_right
+				}
+				TFBot
+				{
+					Template Heavy_Gnome
+					Tag flankers_left
+					Tag flankers_right
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Where spawnbot_invasion
+			Name "w6_support_c"
+			TotalCount 32
+			MaxActive 6
+			SpawnCount 3
+			WaitBeforeStarting 5
+			WaitBetweenSpawns 15
+			TotalCurrency 0
+			Support 1
+			TFBot
+			{
+				Template Pyro_Rapid
+				Skill Expert
+			}
+		}
+	}
+}
