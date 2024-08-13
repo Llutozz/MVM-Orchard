@@ -105,9 +105,20 @@ WaveSchedule
 			WaitBeforeStarting 0
 			WaitBetweenSpawns 0
 			TotalCurrency 50
-			TFBot
+			Squad
 			{
-				Template Heavy_Gnome
+				TFBot
+				{
+					Template Scout_Bonk
+				}
+				TFBot
+				{
+					Template Scout_Bonk_Bat
+				}
+				TFBot
+				{
+					Template Sniper_Bow_Rapid
+				}
 			}
 		}
 	}
